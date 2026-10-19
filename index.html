@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microtech365 - Modern Enterprise & IT Solutions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fffbeeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            DEFAULT: '#f59e0b',
+                        },
+                        darkbg: {
+                            900: '#0b0f19',
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .glow-amber {
+            box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.3);
+        }
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(31, 41, 55, 0.5);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px -10px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-black">
+
+    <!-- TOP ANNOUNCEMENT / QUICK INFO BAR -->
+    <div class="bg-darkbg-800 border-b border-gray-800 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 text-gray-400">
+            <div class="flex items-center space-x-6">
+                <span class="flex items-center gap-2">
+                    <i class="fa-solid me-1 fa-clock text-brand-500"></i> 
+                    <span>Mon – Sat: 9:00 am – 5:00 pm | Sun: CLOSED</span>
+                </span>
+                <span class="hidden md:flex items-center gap-2">
+                    <i class="fa-solid fa-location-dot text-brand-500"></i>
+                    <span>Paducah, KY, USA</span>
+                </span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="mailto:microtech365official@outlook.com" class="hover:text-brand-500 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope text-brand-500"></i>
+                    <span>microtech365official@outlook.com</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN STICKY NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- BRAND LOGO WITH EMBEDDED HEXAGON SYMBOL -->
+                <a href="#" onclick="switchPage('home')" class="flex items-center space-x-3 group focus:outline-none">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center group-hover:border-brand-500 transition-all">
+                        <svg class="w-7 h-7 text-brand-500" viewBox="0 0 100 100" fill="currentColor">
+                            <path d="M50,10 L88,32 L88,76 L50,98 L12,76 L12,32 Z" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linejoin="round"/>
+                            <path d="M50,10 L50,54 L88,32" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linejoin="round"/>
+                            <path d="M50,54 L12,32" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linejoin="round"/>
+                            <path d="M50,54 L50,98" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-wider text-white flex items-center">
+                            MICROTECH<span class="text-brand-500 ml-1">365</span>
+                        </span>
+                        <span class="text-[10px] text-gray-400 -mt-1 tracking-widest uppercase">IT & Enterprise Solutions</span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAVIGATION LINKS -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium transition-all text-brand-500 bg-brand-500/10 border border-brand-500/20">Home</button>
+                    <button onclick="switchPage('about')" id="nav-about" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition-all">About Us</button>
+                    <button onclick="switchPage('services')" id="nav-services" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition-all">Our Services</button>
+                    <button onclick="switchPage('affordability')" id="nav-affordability" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition-all">Affordability</button>
+                    <button onclick="switchPage('helpdesk')" id="nav-helpdesk" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition-all">Helpdesk</button>
+                    <button onclick="switchPage('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800 transition-all">Contact Us</button>
+                </nav>
+
+                <!-- DESKTOP ACTION BUTTON -->
+                <div class="hidden lg:flex items-center space-x-3">
+                    <a href="mailto:microtech365official@outlook.com" class="px-5 py-2.5 rounded-lg bg-brand-500 hover:bg-brand-600 text-darkbg-900 font-semibold text-sm transition-all shadow-lg shadow-brand-500/20 flex items-center gap-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Email Support</span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU CONTAINER -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-darkbg-800 border-b border-gray-800 px-4 pt-2 pb-6 space-y-2">
+            <button onclick="switchPage('home'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-white hover:bg-gray-700">Home</button>
+            <button onclick="switchPage('about'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:bg-gray-700">About Us</button>
+            <button onclick="switchPage('services'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:bg-gray-700">Our Services</button>
+            <button onclick="switchPage('affordability'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:bg-gray-700">Affordability</button>
+            <button onclick="switchPage('helpdesk'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:bg-gray-700">Helpdesk</button>
+            <button onclick="switchPage('contact'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium text-gray-300 hover:bg-gray-700">Contact Us</button>
+            <div class="pt-2 border-t border-gray-700">
+                <a href="mailto:microtech365official@outlook.com" class="block w-full text-center px-4 py-3 rounded-lg bg-brand-500 text-darkbg-900 font-bold">
+                    <i class="fa-solid fa-envelope mr-2"></i>Direct Email
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="flex-grow">
+
+        <!-- ================= PAGE 1: HOMEPAGE ================= -->
+        <section id="page-home" class="page-content">
+            <!-- HERO SECTION -->
+            <div class="relative overflow-hidden py-24 lg:py-32 bg-gradient-to-b from-darkbg-900 via-darkbg-800 to-darkbg-900">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-8">
+                            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-500 text-xs font-semibold tracking-wide uppercase">
+                                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                                <span>Next-Gen Enterprise Infrastructure</span>
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                                Empowering Organizations With <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-brand-500 to-amber-600">365 Tech Precision</span>
+                            </h1>
+                            <p class="text-lg text-gray-300 leading-relaxed max-w-2xl">
+                                Microtech365 delivers modern Cloud Architecture, Dynamics 365, Cybersecurity Management, and Enterprise Productivity Solutions tailored for optimal efficiency and maximum affordability.
+                            </p>
+                            <div class="flex flex-wrap gap-4 pt-2">
+                                <button onclick="switchPage('services')" class="px-8 py-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-darkbg-900 font-bold text-base transition-all shadow-xl shadow-brand-500/25 flex items-center gap-3">
+                                    <span>Explore Our Services</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                                <button onclick="switchPage('contact')" class="px-8 py-4 rounded-xl bg-darkbg-700 hover:bg-gray-700 border border-gray-600 text-white font-semibold text-base transition-all flex items-center gap-3">
+                                    <span>Get In Touch</span>
+                                    <i class="fa-solid fa-envelope text-brand-500"></i>
+                                </button>
+                            </div>
+                            <!-- Trust Badges -->
+                            <div class="pt-8 border-t border-gray-800 grid grid-cols-3 gap-4 text-center sm:text-left">
+                                <div>
+                                    <p class="text-2xl font-bold text-white">99.9%</p>
+                                    <p class="text-xs text-gray-400">Reliability Target</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold text-brand-500">365 Days</p>
+                                    <p class="text-xs text-gray-400">Continuous Security</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold text-white">100%</p>
+                                    <p class="text-xs text-gray-400">Cost Transparency</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GRAPHIC / ICON HUB -->
+                        <div class="lg:col-span-5 flex justify-center">
+                            <div class="relative w-full max-w-md aspect-square rounded-3xl glass-card p-8 flex flex-col justify-between overflow-hidden group">
+                                <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                                <div class="flex justify-between items-center">
+                                    <div class="w-14 h-14 rounded-2xl bg-brand-500/20 flex items-center justify-center border border-brand-500/40">
+                                        <i class="fa-solid fa-shield-halved text-2xl text-brand-500"></i>
+                                    </div>
+                                    <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20">Operational</span>
+                                </div>
+                                <div class="my-6 space-y-4">
+                                    <div class="p-3 rounded-xl bg-darkbg-800/80 border border-gray-700/50 flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fa-solid fa-cloud text-brand-500"></i>
+                                            <span class="text-sm font-medium">Microsoft 365 Architecture</span>
+                                        </div>
+                                        <i class="fa-solid fa-check text-xs text-emerald-400"></i>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-darkbg-800/80 border border-gray-700/50 flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fa-solid fa-cubes text-brand-500"></i>
+                                            <span class="text-sm font-medium">Dynamics 365 Integration</span>
+                                        </div>
+                                        <i class="fa-solid fa-check text-xs text-emerald-400"></i>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-darkbg-800/80 border border-gray-700/50 flex items-center justify-between">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fa-solid fa-lock text-brand-500"></i>
+                                            <span class="text-sm font-medium">Proactive Defense</span>
+                                        </div>
+                                        <i class="fa-solid fa-check text-xs text-emerald-400"></i>
+                                    </div>
+                                </div>
+                                <div class="pt-4 border-t border-gray-700/50 flex items-center justify-between text-xs text-gray-400">
+                                    <span>Headquarters: Paducah, KY</span>
+                                    <span class="text-brand-500 font-semibold">Microtech365</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CORE HIGHLIGHTS -->
+            <div class="py-20 bg-darkbg-900 border-t border-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <h2 class="text-3xl font-bold text-white mb-4">Why Partner With Microtech365?</h2>
+                        <p class="text-gray-400">We eliminate technological complexity with optimized, modern architectures designed for scalable growth and bulletproof continuity.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="glass-card p-8 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 text-xl mb-6">
+                                <i class="fa-solid fa-coins"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Transparent & Cost-Effective</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Experience enterprise-grade IT infrastructure engineered specifically to minimize overhead without compromising quality.
+                            </p>
+                        </div>
+                        <div class="glass-card p-8 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 text-xl mb-6">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Dedicated Helpdesk Support</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Direct ticket resolution and swift assistance through our streamlined email helpdesk ecosystem.
+                            </p>
+                        </div>
+                        <div class="glass-card p-8 rounded-2xl">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 text-xl mb-6">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Proactive Cyber Defense</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Continuous threat protection, secure identity access, and cloud compliance managed by IT specialists.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: ABOUT US ================= -->
+        <section id="page-about" class="page-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-500 font-semibold text-sm uppercase tracking-wider">About Microtech365</span>
+                    <h1 class="text-4xl font-extrabold text-white mt-2 mb-4">Driving Innovation & Reliability</h1>
+                    <p class="text-gray-400">Delivering structured technology solutions designed for seamless enterprise workflows.</p>
+                </div>
+
+                <!-- Story Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                    <div class="space-y-6">
+                        <h2 class="text-2xl font-bold text-white">Our Mission</h2>
+                        <p class="text-gray-300 leading-relaxed">
+                            Microtech365 was established to bridge the gap between complex enterprise IT tools and cost-effective practical business deployment. Based out of Paducah, KY, USA, our focus centers on empowering institutions through cloud infrastructure, intelligent business applications, and robust data protection frameworks.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            We believe that technology should be a multiplier, not an impediment. Our streamlined infrastructure services operate efficiently 365 days a year, providing business leaders with complete peace of mind.
+                        </p>
+                        <div class="p-4 rounded-xl bg-darkbg-800 border border-brand-500/20 border-l-4 border-l-brand-500">
+                            <p class="text-sm text-gray-300 italic">
+                                "Technology standardizes excellence when deployed with precision, accessibility, and clear architecture."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-8 rounded-3xl space-y-6">
+                        <h3 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-3">Company Operations Snapshot</h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Headquarters</span>
+                                <span class="text-white font-medium">Paducah, KY, USA</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Primary Email</span>
+                                <span class="text-brand-500 font-medium">microtech365official@outlook.com</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-800">
+                                <span class="text-gray-400">Operating Days</span>
+                                <span class="text-white font-medium">Monday – Saturday</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-gray-400">Operational Hours</span>
+                                <span class="text-white font-medium">9:00 am – 5:00 pm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Pillars -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-darkbg-800 p-8 rounded-2xl border border-gray-800">
+                        <div class="text-brand-500 text-3xl mb-4"><i class="fa-solid fa-shield-cat"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Security First</h3>
+                        <p class="text-gray-400 text-sm">Every implementation starts with proactive cybersecurity policies and zero-trust guidelines.</p>
+                    </div>
+                    <div class="bg-darkbg-800 p-8 rounded-2xl border border-gray-800">
+                        <div class="text-brand-500 text-3xl mb-4"><i class="fa-solid fa-microchip"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Modern Stack</h3>
+                        <p class="text-gray-400 text-sm">Utilizing the latest cloud paradigms across Microsoft 365, Dynamics, and custom cloud architecture.</p>
+                    </div>
+                    <div class="bg-darkbg-800 p-8 rounded-2xl border border-gray-800">
+                        <div class="text-brand-500 text-3xl mb-4"><i class="fa-solid fa-handshake"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">Direct Communication</h3>
+                        <p class="text-gray-400 text-sm">Direct human interaction with clear helpdesk protocols and no automated runarounds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: AFFORDABILITY ================= -->
+        <section id="page-affordability" class="page-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-500 font-semibold text-sm uppercase tracking-wider">Value Optimization</span>
+                    <h1 class="text-4xl font-extrabold text-white mt-2 mb-4">Enterprise Power, Budget Intelligence</h1>
+                    <p class="text-gray-400">Microtech365 is dedicated to making high-tier IT solutions accessible without corporate overhead markup.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                    <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl font-bold mb-6">
+                                01
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Zero Overhead Bloat</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                We audit and deploy only the infrastructure and licensing you truly need. No unnecessary add-ons or tier markups.
+                            </p>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300 border-t border-gray-800 pt-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Lean Software Auditing</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Optimized M365 Licenses</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-brand-500/50 bg-darkbg-800/90 relative">
+                        <div class="absolute -top-3 right-6 px-3 py-1 bg-brand-500 text-darkbg-900 font-bold text-xs rounded-full">Primary Focus</div>
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/20 text-brand-500 flex items-center justify-center text-xl font-bold mb-6">
+                                02
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Transparent Cost Structure</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Enjoy total predictability. Our pricing models prioritize cost efficiency and clear budget alignment for organizations of all sizes.
+                            </p>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300 border-t border-gray-800 pt-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Predictable Support Expenses</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Maximum ROI Strategy</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-3xl flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl font-bold mb-6">
+                                03
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Scalable Architecture</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Deploy infrastructure that expands dynamically alongside your organizational growth without exponential cost spikes.
+                            </p>
+                        </div>
+                        <ul class="space-y-3 text-sm text-gray-300 border-t border-gray-800 pt-6">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Cloud Elasticity</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> Long-Term ROI Focus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Callout Banner -->
+                <div class="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-darkbg-800 via-brand-500/10 to-darkbg-800 border border-brand-500/30 text-center">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">Looking to optimize your IT expenditure?</h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+                        Get in touch with our specialist team to learn how Microtech365 streamlines infrastructure cost structures.
+                    </p>
+                    <a href="mailto:microtech365official@outlook.com" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-darkbg-900 font-bold transition-all">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>Contact Microtech365 Team</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: OUR SERVICES ================= -->
+        <section id="page-services" class="page-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-500 font-semibold text-sm uppercase tracking-wider">Expert Capabilities</span>
+                    <h1 class="text-4xl font-extrabold text-white mt-2 mb-4">Comprehensive IT & Enterprise Services</h1>
+                    <p class="text-gray-400">End-to-end technology solutions tailored for operational excellence and cybersecurity compliance.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-brands fa-microsoft"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Microsoft 365 Solutions</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Full implementation, licensing optimization, tenant migration, Exchange setup, SharePoint customization, and Microsoft Teams security governance.
+                        </p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Dynamics 365 Implementation</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Tailored ERP & CRM integration. Streamline sales, customer management, and financial workflows with specialized Dynamics 365 modules.
+                        </p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-shield-virus"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Cybersecurity & Defense</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Multi-layer endpoint defense, threat monitoring, data loss prevention (DLP), multi-factor authentication (MFA) enforcement, and security policies.
+                        </p>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Managed IT Support</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Proactive infrastructure maintenance, system health monitoring, rapid bug resolution, and structured technical helpdesk support.
+                        </p>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Cloud Migration & Architecture</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Seamless server migrations, cloud infrastructure design, hybrid deployments, and optimized serverless data management.
+                        </p>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="glass-card p-8 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Technology Consulting</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Strategic IT roadmap planning, cloud transition blueprints, disaster recovery strategy, and digital transformation guidance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: HELPDESK ================= -->
+        <section id="page-helpdesk" class="page-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-500 font-semibold text-sm uppercase tracking-wider">Direct Assistance</span>
+                    <h1 class="text-4xl font-extrabold text-white mt-2 mb-4">Microtech365 Helpdesk</h1>
+                    <p class="text-gray-400">Our technical support team is available during operating hours to resolve technical inquiries.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Email Direct Portal -->
+                    <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-brand-500/40">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-brand-500/20 text-brand-500 flex items-center justify-center text-2xl mb-6">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-white mb-3">Submit Support Inquiry</h2>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                                Send a detailed support inquiry directly to our helpdesk inbox. Please include your company details and query description for swift assistance.
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <a href="mailto:microtech365official@outlook.com?subject=Helpdesk%20Support%20Request" class="w-full py-3.5 px-6 rounded-xl bg-brand-500 hover:bg-brand-600 text-darkbg-900 font-bold text-center block transition-all shadow-lg shadow-brand-500/20">
+                                Launch Helpdesk Email
+                            </a>
+                            <p class="text-xs text-center text-gray-400">Direct address: microtech365official@outlook.com</p>
+                        </div>
+                    </div>
+
+                    <!-- Helpdesk Protocol & Hours -->
+                    <div class="bg-darkbg-800 p-8 rounded-3xl border border-gray-800 space-y-6">
+                        <h3 class="text-xl font-bold text-white border-b border-gray-700 pb-3">Support Protocols</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-circle-check text-brand-500 mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Standard Support Hours</h4>
+                                    <p class="text-xs text-gray-400">Mon – Sat: 9:00 am – 5:00 pm (EST)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-circle-check text-brand-500 mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Response Window</h4>
+                                    <p class="text-xs text-gray-400">Inquiries during standard hours receive priority queuing.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i class="fa-solid fa-circle-check text-brand-500 mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-white">Location Base</h4>
+                                    <p class="text-xs text-gray-400">Paducah, KY, USA operations hub.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-darkbg-900 border border-gray-700 text-xs text-gray-400">
+                            <p class="font-semibold text-gray-300 mb-1"><i class="fa-solid fa-circle-info text-brand-500 mr-1"></i> Tip for faster resolution:</p>
+                            Include relevant IT environment details (e.g. Microsoft 365, tenant ID, or service area) in your email subject line.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 6: CONTACT US ================= -->
+        <section id="page-contact" class="page-content hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-500 font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
+                    <h1 class="text-4xl font-extrabold text-white mt-2 mb-4">Contact Microtech365</h1>
+                    <p class="text-gray-400">Reach out to our team directly via email or view our operational information.</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Contact Cards -->
+                    <div class="glass-card p-8 rounded-3xl space-y-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-400">Email Address</h3>
+                                <a href="mailto:microtech365official@outlook.com" class="text-base font-bold text-white hover:text-brand-500 transition-colors">
+                                    microtech365official@outlook.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-400">Location</h3>
+                                <p class="text-base font-bold text-white">Paducah, KY, USA</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-400">Hours of Operation</h3>
+                                <p class="text-sm font-bold text-white">Monday – Saturday: 9:00 am – 5:00 pm</p>
+                                <p class="text-xs text-red-400 font-semibold mt-0.5">Sunday: CLOSED</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direct Connect Box -->
+                    <div class="bg-darkbg-800 p-8 rounded-3xl border border-gray-800 flex flex-col justify-between text-center md:text-left">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-white">Connect With Us</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                We welcome inquiries regarding enterprise technology architecture, Microsoft platform assistance, or managed IT guidance.
+                            </p>
+                            <p class="text-gray-400 text-xs">
+                                Connect across our verified developer and corporate media channels below.
+                            </p>
+                        </div>
+
+                        <div class="pt-6 mt-6 border-t border-gray-700/60">
+                            <h4 class="text-xs font-semibold uppercase text-gray-400 tracking-wider mb-4">Official Channels</h4>
+                            <div class="flex justify-center md:justify-start space-x-4">
+                                <a href="https://github.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-darkbg-900 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-500 hover:border-brand-500 transition-all">
+                                    <i class="fa-brands fa-github text-lg"></i>
+                                </a>
+                                <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-darkbg-900 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-500 hover:border-brand-500 transition-all">
+                                    <i class="fa-brands fa-linkedin-in text-lg"></i>
+                                </a>
+                                <a href="https://behance.net" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-darkbg-900 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-500 hover:border-brand-500 transition-all">
+                                    <i class="fa-brands fa-behance text-lg"></i>
+                                </a>
+                                <a href="https://codepen.io" target="_blank" rel="noopener" class="w-10 h-10 rounded-lg bg-darkbg-900 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-brand-500 hover:border-brand-500 transition-all">
+                                    <i class="fa-brands fa-codepen text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 7: PRIVACY POLICY ================= -->
+        <section id="page-privacy" class="page-content hidden py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="border-b border-gray-800 pb-6">
+                    <h1 class="text-3xl font-bold text-white">Privacy Policy</h1>
+                    <p class="text-xs text-gray-400 mt-2">Microtech365 | Paducah, KY, USA</p>
+                </div>
+                <div class="text-sm text-gray-300 space-y-6 leading-relaxed">
+                    <p>At Microtech365 ("we," "our," or "us"), we are committed to respecting your privacy and protecting any information processed through our web application.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">1. Information We Collect</h2>
+                    <p>We do not collect personal data via web contact forms on this site. Information is only received when you voluntarily communicate directly with us via email (microtech365official@outlook.com).</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">2. Use of Information</h2>
+                    <p>Any email correspondence sent to Microtech365 is utilized solely to respond to your inquiries, provide customer support through our Helpdesk, and manage technical services requested by your organization.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">3. Data Security & Storage</h2>
+                    <p>We apply robust administrative and technological safeguards consistent with Microsoft enterprise standards to ensure that communication records remain confidential and protected from unauthorized access.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">4. Contact Information</h2>
+                    <p>For questions regarding our privacy practices, contact us at: <a href="mailto:microtech365official@outlook.com" class="text-brand-500 underline">microtech365official@outlook.com</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 8: TERMS OF SERVICE ================= -->
+        <section id="page-terms" class="page-content hidden py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="border-b border-gray-800 pb-6">
+                    <h1 class="text-3xl font-bold text-white">Terms of Service</h1>
+                    <p class="text-xs text-gray-400 mt-2">Microtech365 | Paducah, KY, USA</p>
+                </div>
+                <div class="text-sm text-gray-300 space-y-6 leading-relaxed">
+                    <p>Welcome to Microtech365. By accessing or utilizing our website or support services, you agree to comply with these terms.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">1. Acceptable Use</h2>
+                    <p>You agree to use our website and IT services in accordance with applicable local, state, and international laws. Unauthorized attempts to exploit or bypass Microtech365 assets are strictly prohibited.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">2. Intellectual Property</h2>
+                    <p>All brand logos, documentation, source codes, visual elements, and graphics are the exclusive property of Microtech365 located in Paducah, KY, USA.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">3. Service Availability</h2>
+                    <p>While Microtech365 strives for optimal uptime and reliability across services, technical support services are provided "as is" and subject to operational schedules.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">4. Inquiries</h2>
+                    <p>Direct all legal and terms inquiries to: <a href="mailto:microtech365official@outlook.com" class="text-brand-500 underline">microtech365official@outlook.com</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 9: COOKIE POLICY ================= -->
+        <section id="page-cookies" class="page-content hidden py-16">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="border-b border-gray-800 pb-6">
+                    <h1 class="text-3xl font-bold text-white">Cookie Policy</h1>
+                    <p class="text-xs text-gray-400 mt-2">Microtech365 | Transparency Notice</p>
+                </div>
+                <div class="text-sm text-gray-300 space-y-6 leading-relaxed">
+                    <p>This Cookie Policy explains how Microtech365 uses cookies and similar technologies when you visit our website.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">1. Essential Technical Cookies</h2>
+                    <p>Our website utilizes minimal essential session storage to remember page navigation states (such as active tab view). We do not run third-party tracking scripts or advertising cookies.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">2. Managing Preferences</h2>
+                    <p>Since we do not utilize invasive advertising cookies, no opt-out popups are required. You may clear local storage or cache in your web browser at any time.</p>
+
+                    <h2 class="text-lg font-bold text-white mt-6">3. Contact Us</h2>
+                    <p>Questions about our cookie usage can be sent to: <a href="mailto:microtech365official@outlook.com" class="text-brand-500 underline">microtech365official@outlook.com</a></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-darkbg-800 border-t border-gray-800 text-gray-400 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-7 h-7 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-brand-500" viewBox="0 0 100 100" fill="currentColor">
+                                <path d="M50,10 L88,32 L88,76 L50,98 L12,76 L12,32 Z" fill="none" stroke="#f59e0b" stroke-width="8"/>
+                            </svg>
+                        </div>
+                        <span class="text-base font-bold text-white tracking-wider">MICROTECH<span class="text-brand-500">365</span></span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Modern IT solutions, Microsoft cloud infrastructure, and enterprise efficiency frameworks operating out of Paducah, KY, USA.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Quick Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><button onclick="switchPage('home')" class="hover:text-brand-500 transition-colors">Home</button></li>
+                        <li><button onclick="switchPage('about')" class="hover:text-brand-500 transition-colors">About Us</button></li>
+                        <li><button onclick="switchPage('services')" class="hover:text-brand-500 transition-colors">Our Services</button></li>
+                        <li><button onclick="switchPage('affordability')" class="hover:text-brand-500 transition-colors">Affordability</button></li>
+                        <li><button onclick="switchPage('helpdesk')" class="hover:text-brand-500 transition-colors">Helpdesk Support</button></li>
+                        <li><button onclick="switchPage('contact')" class="hover:text-brand-500 transition-colors">Contact Us</button></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Legal & Information -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Legal & Information</h4>
+                    <ul class="space-y-2">
+                        <li><button onclick="switchPage('privacy')" class="hover:text-brand-500 transition-colors">Privacy Policy</button></li>
+                        <li><button onclick="switchPage('terms')" class="hover:text-brand-500 transition-colors">Terms of Service</button></li>
+                        <li><button onclick="switchPage('cookies')" class="hover:text-brand-500 transition-colors">Cookie Policy</button></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact & Socials -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4">Contact & Hours</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-500"></i> Paducah, KY, USA</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-500"></i> microtech365official@outlook.com</li>
+                        <li class="pt-2 text-gray-400">Mon – Sat: 9:00 am – 5:00 pm</li>
+                        <li class="text-red-400 font-semibold">Sunday: CLOSED</li>
+                    </ul>
+                    <div class="flex space-x-3 mt-4 pt-2">
+                        <a href="https://github.com" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-darkbg-900 flex items-center justify-center text-gray-400 hover:text-brand-500 hover:border hover:border-brand-500">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-darkbg-900 flex items-center justify-center text-gray-400 hover:text-brand-500 hover:border hover:border-brand-500">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://behance.net" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-darkbg-900 flex items-center justify-center text-gray-400 hover:text-brand-500 hover:border hover:border-brand-500">
+                            <i class="fa-brands fa-behance"></i>
+                        </a>
+                        <a href="https://codepen.io" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-darkbg-900 flex items-center justify-center text-gray-400 hover:text-brand-500 hover:border hover:border-brand-500">
+                            <i class="fa-brands fa-codepen"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+                <p>&copy; Microtech365. All rights reserved. Operating in Paducah, KY, USA.</p>
+                <div class="flex space-x-6">
+                    <button onclick="switchPage('privacy')" class="hover:text-gray-400">Privacy</button>
+                    <button onclick="switchPage('terms')" class="hover:text-gray-400">Terms</button>
+                    <button onclick="switchPage('cookies')" class="hover:text-gray-400">Cookies</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT PAGE SWITCHER LOGIC -->
+    <script>
+        // Page Switching Function
+        function switchPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+
+            // Update Desktop Nav Button Active States
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-brand-500', 'bg-brand-500/10', 'border', 'border-brand-500/20');
+                btn.classList.add('text-gray-300');
+            });
+
+            const activeBtn = document.getElementById('nav-' + pageId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-gray-300');
+                activeBtn.classList.add('text-brand-500', 'bg-brand-500/10', 'border', 'border-brand-500/20');
+            }
+
+            // Scroll to top smooth
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        }
+    </script>
+</body>
+</html>
